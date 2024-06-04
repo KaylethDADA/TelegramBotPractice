@@ -1,4 +1,4 @@
-﻿using TelegramBotPractice.Domain;
+﻿using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Application.Interfaces
 {

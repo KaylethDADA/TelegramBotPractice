@@ -1,7 +1,7 @@
 ﻿using MapsterMapper;
 using TelegramBotPractice.Application.Dtos.Author;
 using TelegramBotPractice.Application.Interfaces;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Application.Services
 {

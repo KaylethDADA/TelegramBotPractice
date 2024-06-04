@@ -1,5 +1,5 @@
 ﻿using TelegramBotPractice.Application.Interfaces;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 using TelegramBotPractice.Infrastructure.Context;
 
 namespace TelegramBotPractice.Infrastructure.Repositories

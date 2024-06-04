@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Infrastructure.Context.Configurations
 {
@@ -10,6 +10,15 @@ namespace TelegramBotPractice.Infrastructure.Context.Configurations
         {
             builder.ToTable("Authors");
             builder.HasKey(k => k.Id);
+
+
+            builder.OwnsOne(x => x.FullName, fullName =>
+            {
+                fullName.Property(x => x.FirstName)
+                .IsRequired();
+                fullName.Property(x => x.LastName);
+                fullName.Property(x => x.MiddleName);
+            });
 
         }
     }

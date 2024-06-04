@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Infrastructure.Context
 {

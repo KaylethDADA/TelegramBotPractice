@@ -1,11 +1,15 @@
 ﻿using Microsoft.Extensions.Options;
+using Telegram.Bot;
+using TelegramBotPractice.Api.Command.Interfaces;
+using TelegramBotPractice.Api.Command;
+using TelegramBotPractice.Api.Options;
 
 namespace TelegramBotPractice.Api
 {
     public static class WebHookExtensions
     {
         public static T GetConfiguration<T>(this IServiceProvider serviceProvider)
-        where T : class
+            where T : class
         {
             var o = serviceProvider.GetService<IOptions<T>>();
 
@@ -13,6 +17,36 @@ namespace TelegramBotPractice.Api
                 throw new ArgumentNullException(nameof(T));
 
             return o.Value;
+        }
+        
+        public static ControllerActionEndpointConventionBuilder MapBotWebhookRoute<T>(
+            this IEndpointRouteBuilder endpoints,
+            string route)
+        {
+            var controllerName = typeof(T).Name.Replace("Controller", "", StringComparison.Ordinal);
+            var actionName = typeof(T).GetMethods()[0].Name;
+
+            return endpoints.MapControllerRoute(
+                name: "bot_webhook",
+                pattern: route,
+                defaults: new { controller = controllerName, action = actionName });
+        }
+
+        public static IServiceCollection StartTbBot(this IServiceCollection services)
+        {
+            // Регистрация HttpClient и TelegramBotClient
+           services.AddHttpClient("telegram_bot_client")
+                            .AddTypedClient<ITelegramBotClient>((httpClient, sp) =>
+                            {
+                                BotConfiguration? botConfig = sp.GetConfiguration<BotConfiguration>();
+                                TelegramBotClientOptions options = new(botConfig.BotToken);
+                                return new TelegramBotClient(options, httpClient);
+                            });
+
+            services.AddScoped<ICommandExecutor, CommandExecutor>();
+            services.AddControllers().AddNewtonsoftJson();
+
+            return services;
         }
     }
 }

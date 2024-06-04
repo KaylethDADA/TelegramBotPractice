@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Infrastructure.Context.Configurations
 {

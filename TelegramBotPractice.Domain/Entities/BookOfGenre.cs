@@ -1,4 +1,4 @@
-﻿namespace TelegramBotPractice.Domain
+﻿namespace TelegramBotPractice.Domain.Entities
 {
     public class BookOfGenre
     {

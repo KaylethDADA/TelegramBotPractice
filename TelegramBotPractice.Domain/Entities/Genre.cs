@@ -1,8 +1,8 @@
-﻿using TelegramBotPractice.Domain.Entities;
+﻿using TelegramBotPractice.Domain.Primitives;
 
-namespace TelegramBotPractice.Domain
+namespace TelegramBotPractice.Domain.Entities
 {
-    public class Genre : Entity
+    public class Genre : BaseEntity
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -10,10 +10,10 @@ namespace TelegramBotPractice.Domain
 
         public Genre Update(string? name, string? description)
         {
-            if(!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
                 Name = name;
 
-            if(!string.IsNullOrEmpty(description))
+            if (!string.IsNullOrEmpty(description))
                 Description = description;
 
             return this;

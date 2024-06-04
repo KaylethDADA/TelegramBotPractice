@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using TelegramBotPractice.Application.Dtos.Book;
-using TelegramBotPractice.Domain;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Application.Mappings
 {
