@@ -16,7 +16,8 @@ namespace TelegramBotPractice.Infrastructure.Context.Configurations
             {
                 fullName.Property(x => x.FirstName)
                 .IsRequired();
-                fullName.Property(x => x.LastName);
+                fullName.Property(x => x.LastName)
+                .IsRequired();
                 fullName.Property(x => x.MiddleName);
             });
 

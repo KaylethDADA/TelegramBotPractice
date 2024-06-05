@@ -118,6 +118,10 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.Property<long>("ChatId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
@@ -135,6 +139,7 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                                 .HasColumnType("text");
 
                             b1.Property<string>("LastName")
+                                .IsRequired()
                                 .HasColumnType("text");
 
                             b1.Property<string>("MiddleName")

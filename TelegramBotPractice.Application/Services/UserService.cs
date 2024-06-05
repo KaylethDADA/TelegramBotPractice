@@ -1,7 +1,7 @@
 ﻿using MapsterMapper;
 using TelegramBotPractice.Application.Dtos.User;
 using TelegramBotPractice.Application.Interfaces;
-using TelegramBotPractice.Domain.Entities;
+using User = TelegramBotPractice.Domain.Entities.User;
 
 namespace TelegramBotPractice.Application.Services
 {
@@ -30,10 +30,11 @@ namespace TelegramBotPractice.Application.Services
                 throw new Exception();
 
             user.Update(
-                request.ChatId,
-                request.Name.FirstName,
-                request.Name.LastName,
-                request.Name.MiddleName);
+                request.FullName.FirstName,
+                request.FullName.LastName,
+                request.FullName.MiddleName,
+                request.UserName);
+
             _userService.Update(user);
 
             return _mapper.Map<UserResponse>(user);

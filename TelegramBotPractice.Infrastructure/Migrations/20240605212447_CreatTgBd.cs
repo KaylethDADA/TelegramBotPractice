@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TelegramBotPractice.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CreatDbTgBot : Migration
+    public partial class CreatTgBd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,9 +16,9 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: true),
-                    MiddleName = table.Column<string>(type: "text", nullable: true)
+                    FullName_FirstName = table.Column<string>(type: "text", nullable: false),
+                    FullName_LastName = table.Column<string>(type: "text", nullable: false),
+                    FullName_MiddleName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,11 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    ChatId = table.Column<long>(type: "bigint", nullable: false),
+                    FullName_FirstName = table.Column<string>(type: "text", nullable: false),
+                    FullName_LastName = table.Column<string>(type: "text", nullable: false),
+                    FullName_MiddleName = table.Column<string>(type: "text", nullable: true),
+                    Username = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

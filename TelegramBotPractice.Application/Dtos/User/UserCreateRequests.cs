@@ -3,6 +3,7 @@
 namespace TelegramBotPractice.Application.Dtos.User
 {
     public sealed record  UserCreateRequests(
-        FullName Name,
+        FullName FullName,
+        string Username,
         long ChatId);
 }

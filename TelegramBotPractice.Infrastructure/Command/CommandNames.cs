@@ -1,4 +1,4 @@
-﻿namespace TelegramBotPractice.Api.Command
+﻿namespace TelegramBotPractice.Infrastructure.Command
 {
     public static class CommandNames
     {

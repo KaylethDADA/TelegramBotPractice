@@ -15,8 +15,14 @@ namespace TelegramBotPractice.Infrastructure.Repositories
 
         public async Task<User> Create(User user)
         {
+            var userChat = GetUserChatId(user.ChatId);
+
+            if(userChat != null)
+                return userChat;
+
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
+
             return user;
         }
         public User Update(User user)
@@ -25,10 +31,15 @@ namespace TelegramBotPractice.Infrastructure.Repositories
             db.SaveChanges();
             return user;
         }
+        public User GetUserChatId(long ChatId)
+        {
+            return db.Users.FirstOrDefault(x => x.ChatId == ChatId)!;
+        }
         public User GetById(Guid id)
         {
             return db.Users.FirstOrDefault(x => x.Id == id)!;
         }
+
         public bool Delete(Guid id)
         {
             var user = GetById(id);

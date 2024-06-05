@@ -12,8 +12,8 @@ using TelegramBotPractice.Infrastructure.Context;
 namespace TelegramBotPractice.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240602135125_CreatDbTgBot")]
-    partial class CreatDbTgBot
+    [Migration("20240605212447_CreatTgBd")]
+    partial class CreatTgBd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,28 +25,18 @@ namespace TelegramBotPractice.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Author", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Authors", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Book", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Book", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,7 +63,7 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.ToTable("Books", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.BookOfGenre", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.BookOfGenre", b =>
                 {
                     b.Property<Guid>("GenreId")
                         .HasColumnType("uuid");
@@ -88,7 +78,7 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.ToTable("BookOfGenres", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Favorit", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Favorit", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -103,7 +93,7 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.ToTable("Favorits", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Genre", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Genre", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,13 +112,16 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.ToTable("Genres", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.User", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Name")
+                    b.Property<long>("ChatId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -137,9 +130,39 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Book", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Author", b =>
                 {
-                    b.HasOne("TelegramBotPractice.Domain.Author", "Author")
+                    b.OwnsOne("TelegramBotPractice.Domain.ValueObjects.FullName", "FullName", b1 =>
+                        {
+                            b1.Property<Guid>("AuthorId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("MiddleName")
+                                .HasColumnType("text");
+
+                            b1.HasKey("AuthorId");
+
+                            b1.ToTable("Authors");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AuthorId");
+                        });
+
+                    b.Navigation("FullName")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Book", b =>
+                {
+                    b.HasOne("TelegramBotPractice.Domain.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -148,15 +171,15 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.BookOfGenre", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.BookOfGenre", b =>
                 {
-                    b.HasOne("TelegramBotPractice.Domain.Book", "Book")
+                    b.HasOne("TelegramBotPractice.Domain.Entities.Book", "Book")
                         .WithMany("Genres")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TelegramBotPractice.Domain.Genre", "Genre")
+                    b.HasOne("TelegramBotPractice.Domain.Entities.Genre", "Genre")
                         .WithMany("Books")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -167,15 +190,15 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Favorit", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Favorit", b =>
                 {
-                    b.HasOne("TelegramBotPractice.Domain.Book", "Book")
+                    b.HasOne("TelegramBotPractice.Domain.Entities.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TelegramBotPractice.Domain.User", "User")
+                    b.HasOne("TelegramBotPractice.Domain.Entities.User", "User")
                         .WithMany("Favorits")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -186,22 +209,52 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Author", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.User", b =>
+                {
+                    b.OwnsOne("TelegramBotPractice.Domain.ValueObjects.FullName", "FullName", b1 =>
+                        {
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("MiddleName")
+                                .HasColumnType("text");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("FullName")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Book", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Book", b =>
                 {
                     b.Navigation("Genres");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.Genre", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Genre", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("TelegramBotPractice.Domain.User", b =>
+            modelBuilder.Entity("TelegramBotPractice.Domain.Entities.User", b =>
                 {
                     b.Navigation("Favorits");
                 });

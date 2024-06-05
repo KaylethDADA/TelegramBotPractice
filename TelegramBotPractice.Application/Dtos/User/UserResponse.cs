@@ -4,5 +4,5 @@ namespace TelegramBotPractice.Application.Dtos.User
 {
     public sealed record UserResponse(
         Guid Id,
-        FullName Name);
+        FullName FullName);
 }

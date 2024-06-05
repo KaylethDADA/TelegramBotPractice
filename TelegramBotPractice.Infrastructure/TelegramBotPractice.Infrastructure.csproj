@@ -23,4 +23,8 @@
     <ProjectReference Include="..\TelegramBotPractice.Domain\TelegramBotPractice.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

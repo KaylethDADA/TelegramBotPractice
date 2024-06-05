@@ -12,8 +12,8 @@ using TelegramBotPractice.Infrastructure.Context;
 namespace TelegramBotPractice.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240604144650_FixUserOfAuthor")]
-    partial class FixUserOfAuthor
+    [Migration("20240605213520_fixUser")]
+    partial class fixUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,6 +121,10 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                     b.Property<long>("ChatId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
@@ -138,6 +142,7 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                                 .HasColumnType("text");
 
                             b1.Property<string>("LastName")
+                                .IsRequired()
                                 .HasColumnType("text");
 
                             b1.Property<string>("MiddleName")

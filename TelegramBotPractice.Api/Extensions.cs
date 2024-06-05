@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using Telegram.Bot;
-using TelegramBotPractice.Api.Command.Interfaces;
-using TelegramBotPractice.Api.Command;
 using TelegramBotPractice.Api.Options;
 
 namespace TelegramBotPractice.Api
@@ -43,9 +41,7 @@ namespace TelegramBotPractice.Api
                                 return new TelegramBotClient(options, httpClient);
                             });
 
-            services.AddScoped<ICommandExecutor, CommandExecutor>();
             services.AddControllers().AddNewtonsoftJson();
-
             return services;
         }
     }
