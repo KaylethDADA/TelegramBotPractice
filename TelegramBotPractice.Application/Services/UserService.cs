@@ -44,6 +44,11 @@ namespace TelegramBotPractice.Application.Services
             var user = _userService.GetById(id);
             return _mapper.Map<UserResponse>(user);
         }
+        public UserResponse AddFavoritBook(long chatId, Guid bookId)
+        {
+            var user = _userService.AddFavoritBook(chatId, bookId);
+            return _mapper.Map<UserResponse>(user);
+        }
         public void Delete(Guid id)
         {
             _userService.Delete(id);

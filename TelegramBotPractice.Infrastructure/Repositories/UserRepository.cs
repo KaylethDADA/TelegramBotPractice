@@ -39,7 +39,17 @@ namespace TelegramBotPractice.Infrastructure.Repositories
         {
             return db.Users.FirstOrDefault(x => x.Id == id)!;
         }
+        public User AddFavoritBook(long chatId, Guid bookId)
+        {
+            var user = GetUserChatId(chatId);
 
+            if (user == null)
+                throw new Exception();
+
+            db.Favorits.Add(new Favorit { UserId = user.Id, BookId = bookId});
+            db.SaveChanges();
+            return user;
+        }
         public bool Delete(Guid id)
         {
             var user = GetById(id);

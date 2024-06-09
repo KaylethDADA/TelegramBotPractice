@@ -22,14 +22,14 @@ namespace TelegramBotPractice.Application.Mappings
                 .Map(dest => dest.FullName.MiddleName, src => src.FullName.MiddleName);
 
             config.NewConfig<Update, UserCreateRequests>()
-                        .Map(dest => dest.FullName, src => new FullName
-                        (
-                               src.Message.From.FirstName,
-                               src.Message.From.LastName,
-                               null
-                        ))
-                       .Map(dest => dest.Username, src => src.Message.From.Username)
-                       .Map(dest => dest.ChatId, src => src.Message.Chat.Id);
+                 .Map(dest => dest.FullName, src => new FullName
+                 (
+                      src.Message.From.FirstName,
+                      src.Message.From.LastName,
+                      null
+                 ))
+                 .Map(dest => dest.Username, src => src.Message.From.Username)
+                 .Map(dest => dest.ChatId, src => src.Message.Chat.Id);
         }
     }
 }

@@ -33,6 +33,16 @@ namespace TelegramBotPractice.Infrastructure.Repositories
         {
             return db.Books.FirstOrDefault(x => x.Id == id)!;
         }
+        public Book? GetNextBook(Guid? currentBookId)
+        {
+
+            if (currentBookId == null || currentBookId == Guid.Empty)
+            {
+                return db.Books.OrderBy(b => b.Id).FirstOrDefault();
+            }
+
+            return db.Books.OrderBy(b => b.Id).FirstOrDefault(b => b.Id > currentBookId)!;
+        }
         public bool Delete(Guid id)
         {
             var x = GetById(id);

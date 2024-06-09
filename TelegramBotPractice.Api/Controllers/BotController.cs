@@ -18,7 +18,7 @@ namespace TelegramBotPractice.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Update update, CancellationToken cancellationToken)
         {
-            if (update.Message!.Chat == null && update.CallbackQuery == null)
+            if (update.Message?.Chat == null && update.CallbackQuery == null)
                 return Ok();
 
             await _commandExecutor.Execute(update, cancellationToken);

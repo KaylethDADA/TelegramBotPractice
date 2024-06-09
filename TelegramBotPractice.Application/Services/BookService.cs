@@ -44,6 +44,11 @@ namespace TelegramBotPractice.Application.Services
             var book = _bookRepository.GetById(id);
             return _mapper.Map<BookResponse>(book);
         }
+        public BookResponse GetNextBook(Guid id)
+        {
+            var book = _bookRepository.GetNextBook(id);
+            return _mapper.Map<BookResponse>(book);
+        }
         public void Delete(Guid id)
         {
             _bookRepository.Delete(id);

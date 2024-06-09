@@ -23,8 +23,7 @@ namespace TelegramBotPractice.Application.Mappings
 
             config.NewConfig<Book, BookItemList>()
                 .Map(dest => dest.Id, src => src.Id)
-                .Map(dest => dest.Name, src => src.Name)
-                .Map(dest => dest.AuthorId, src => src.AuthorId);
+                .Map(dest => dest.Name, src => src.Name);
         }
     }
 }

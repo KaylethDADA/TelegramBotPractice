@@ -2,6 +2,5 @@
 {
     public sealed record BookItemList(
         Guid Id,
-        string Name,
-        Guid AuthorId);
+        string Name);
 }

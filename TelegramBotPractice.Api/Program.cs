@@ -12,6 +12,7 @@ builder.Services.AddMappings();
 builder.Services.AddInfrastructure();
 builder.Services.AddServiceApplication();
 builder.Services.AddControllers();
+builder.Services.AddMemoryCache();
 
 //EF
 var connectionString = builder.Configuration.GetConnectionString(ConnectionStrings.Configuration);

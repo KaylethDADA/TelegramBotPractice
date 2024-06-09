@@ -4,6 +4,7 @@ namespace TelegramBotPractice.Application.Interfaces
 {
     public interface IBookRepository : IRepository<Book>
     {
-        public List<Book> GetAll();
+        List<Book> GetAll();
+        Book? GetNextBook(Guid? currentBookId);
     }
 }
