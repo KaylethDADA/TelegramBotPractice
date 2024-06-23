@@ -8,12 +8,14 @@ namespace TelegramBotPractice.Application.Services
     public class BookService
     {
         private IBookRepository _bookRepository;
+        private IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;
 
-        public BookService(IBookRepository bookRepository, IMapper mapper)
+        public BookService(IBookRepository bookRepository, IMapper mapper, IAuthorRepository authorRepository)
         {
             _bookRepository = bookRepository;
             _mapper = mapper;
+            _authorRepository = authorRepository;
         }
 
         public BookResponse Create(BookCreateRequests request)
@@ -44,10 +46,22 @@ namespace TelegramBotPractice.Application.Services
             var book = _bookRepository.GetById(id);
             return _mapper.Map<BookResponse>(book);
         }
-        public BookResponse GetNextBook(Guid id)
+        public BookOfAuthorResponse GetNextBook(Guid id)
         {
             var book = _bookRepository.GetNextBook(id);
-            return _mapper.Map<BookResponse>(book);
+
+            if (book == null)
+                throw new Exception();
+
+            var author = _authorRepository.GetById(book.AuthorId);
+
+            return new BookOfAuthorResponse(
+                Id: book.Id,
+                Name: book.Name,
+                Description: book.Description,
+                YearOfIssue: book.YearOfIssue,
+                AuthorFullName: author.FullName.ToString()
+            );
         }
         public void Delete(Guid id)
         {

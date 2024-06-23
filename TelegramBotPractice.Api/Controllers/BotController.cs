@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Telegram.Bot.Types;
-using TelegramBotPractice.Infrastructure.Command.Interfaces;
+using TelegramBotPractice.Telegram.Interfaces;
 
 namespace TelegramBotPractice.Api.Controllers
 {
@@ -21,7 +21,7 @@ namespace TelegramBotPractice.Api.Controllers
             if (update.Message?.Chat == null && update.CallbackQuery == null)
                 return Ok();
 
-            await _commandExecutor.Execute(update, cancellationToken);
+            await _commandExecutor.ExecuteAsync(update, cancellationToken);
 
             return Ok();
         }

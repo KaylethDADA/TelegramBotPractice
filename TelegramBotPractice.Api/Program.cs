@@ -5,6 +5,7 @@ using TelegramBotPractice.Api.Options;
 using TelegramBotPractice.Application;
 using TelegramBotPractice.Infrastructure;
 using TelegramBotPractice.Infrastructure.Context;
+using TelegramBotPractice.Telegram;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddInfrastructure();
 builder.Services.AddServiceApplication();
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
+builder.Services.AddCommands();
 
 //EF
 var connectionString = builder.Configuration.GetConnectionString(ConnectionStrings.Configuration);

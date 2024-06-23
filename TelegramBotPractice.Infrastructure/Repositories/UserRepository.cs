@@ -46,6 +46,13 @@ namespace TelegramBotPractice.Infrastructure.Repositories
             if (user == null)
                 throw new Exception();
 
+            var book = db.Favorits
+                .Where(x => x.UserId == user.Id && x.BookId == bookId)
+                .FirstOrDefault();
+
+            if (book != null)
+                return user;
+
             db.Favorits.Add(new Favorit { UserId = user.Id, BookId = bookId});
             db.SaveChanges();
             return user;

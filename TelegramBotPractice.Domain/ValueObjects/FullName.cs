@@ -33,5 +33,10 @@ namespace TelegramBotPractice.Domain.ValueObjects
 
             return this;
         }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName ?? ""} {MiddleName ?? ""}".Trim();
+        }
     }
 }
