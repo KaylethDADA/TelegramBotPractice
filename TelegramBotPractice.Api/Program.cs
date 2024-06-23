@@ -18,6 +18,9 @@ builder.Services.AddMemoryCache();
 var connectionString = builder.Configuration.GetConnectionString(ConnectionStrings.Configuration);
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 
+//Reports
+builder.Services.Configure<ExcelReportSettings>(builder.Configuration.GetSection(ExcelReportSettings.Configuration));
+
 //TgBot
 var botConfigurationSection = builder.Configuration.GetSection(BotConfiguration.Configuration);
 builder.Services.Configure<BotConfiguration>(botConfigurationSection);

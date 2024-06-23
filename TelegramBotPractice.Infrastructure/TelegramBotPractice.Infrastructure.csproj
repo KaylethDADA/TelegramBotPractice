@@ -19,12 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TelegramBotPractice.Application\TelegramBotPractice.Application.csproj" />
-    <ProjectReference Include="..\TelegramBotPractice.Domain\TelegramBotPractice.Domain.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\TelegramBotPractice.Application\TelegramBotPractice.Application.csproj" />
+    <ProjectReference Include="..\TelegramBotPractice.Domain\TelegramBotPractice.Domain.csproj" />
   </ItemGroup>
 
 </Project>

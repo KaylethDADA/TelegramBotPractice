@@ -22,6 +22,31 @@ namespace TelegramBotPractice.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TelegramBotPractice.Application.Dtos.Reporting.MostFavoritedBook", b =>
+                {
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("FavoriteCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("YearOfIssue")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.ToTable("MostFavoritedBook");
+                });
+
             modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Author", b =>
                 {
                     b.Property<Guid>("Id")

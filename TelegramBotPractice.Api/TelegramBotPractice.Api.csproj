@@ -20,7 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TelegramBotPractice.Application\TelegramBotPractice.Application.csproj" />
+    <Folder Include="wwwroot\Reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TelegramBotPractice.Infrastructure\TelegramBotPractice.Infrastructure.csproj" />
   </ItemGroup>
 

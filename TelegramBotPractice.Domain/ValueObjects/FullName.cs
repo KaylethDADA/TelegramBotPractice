@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using TelegramBotPractice.Domain.Primitives;
+﻿using TelegramBotPractice.Domain.Primitives;
 
 namespace TelegramBotPractice.Domain.ValueObjects
 {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TelegramBotPractice.Application.Dtos.Reporting;
 using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Infrastructure.Context
@@ -26,8 +27,14 @@ namespace TelegramBotPractice.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            modelBuilder.Entity<MostFavoritedBook>().HasNoKey();
+        }
+
+        [DbFunction(Name = "getmostfavoritedbooks", Schema = "public")]
+        public virtual IQueryable<MostFavoritedBook> GetMostFavoritedBooks()
+        {
+            return Set<MostFavoritedBook>().FromSqlRaw("SELECT * FROM getmostfavoritedbooks()");
         }
     }
 }

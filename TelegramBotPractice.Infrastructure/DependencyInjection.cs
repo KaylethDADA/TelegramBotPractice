@@ -15,6 +15,8 @@ namespace TelegramBotPractice.Infrastructure
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ICommandExecutor, CommandExecutor>();
+            services.AddScoped<IReportingRepository, ReportingRepository>();
+
             return services;
         }
     }

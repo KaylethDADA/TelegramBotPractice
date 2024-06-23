@@ -42,7 +42,6 @@ namespace TelegramBotPractice.Infrastructure.Command
             if (update.Message?.Chat == null && update.CallbackQuery == null)
                 return;
 
-
             if (update.Message != null && update.Message.Text!.Contains(CommandNames.StartCommand))
             {
                 var userCreate = _mapper.Map<UserCreateRequests>(update);
