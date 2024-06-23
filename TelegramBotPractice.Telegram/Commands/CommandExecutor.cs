@@ -2,7 +2,7 @@
 using Telegram.Bot.Types.Enums;
 using TelegramBotPractice.Telegram.Interfaces;
 
-namespace TelegramBotPractice.Telegram
+namespace TelegramBotPractice.Telegram.Commands
 {
     public class CommandExecutor : ICommandExecutor
     {
@@ -25,7 +25,7 @@ namespace TelegramBotPractice.Telegram
             {
                 var command = update.CallbackQuery!.Data;
                 await ExecuteCommand(update, cancellationToken, command);
-            } 
+            }
         }
 
         private async Task ExecuteCommand(Update update, CancellationToken cancellationToken, string command)

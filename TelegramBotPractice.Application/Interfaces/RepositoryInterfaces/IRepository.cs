@@ -1,4 +1,4 @@
-﻿namespace TelegramBotPractice.Application.Interfaces
+﻿namespace TelegramBotPractice.Application.Interfaces.RepositoryInterfaces
 {
     public interface IRepository<TType>
     {

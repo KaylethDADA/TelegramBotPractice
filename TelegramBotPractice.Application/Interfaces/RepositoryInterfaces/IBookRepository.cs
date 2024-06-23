@@ -1,6 +1,6 @@
 ﻿using TelegramBotPractice.Domain.Entities;
 
-namespace TelegramBotPractice.Application.Interfaces
+namespace TelegramBotPractice.Application.Interfaces.RepositoryInterfaces
 {
     public interface IBookRepository : IRepository<Book>
     {

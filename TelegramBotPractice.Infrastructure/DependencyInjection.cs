@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TelegramBotPractice.Application.Interfaces;
+using TelegramBotPractice.Application.Interfaces.ReportingInterfaces;
+using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using TelegramBotPractice.Infrastructure.Repositories;
 
 namespace TelegramBotPractice.Infrastructure

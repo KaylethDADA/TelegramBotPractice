@@ -1,6 +1,6 @@
 ﻿using TelegramBotPractice.Application.Dtos.Reporting;
 
-namespace TelegramBotPractice.Application.Interfaces
+namespace TelegramBotPractice.Application.Interfaces.ReportingInterfaces
 {
     public interface IReportingRepository
     {

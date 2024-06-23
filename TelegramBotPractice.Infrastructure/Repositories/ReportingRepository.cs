@@ -1,7 +1,7 @@
 ﻿//using Microsoft.AspNetCore.Hosting;
 //using TelegramBotPractice.Api.Options;
 using TelegramBotPractice.Application.Dtos.Reporting;
-using TelegramBotPractice.Application.Interfaces;
+using TelegramBotPractice.Application.Interfaces.ReportingInterfaces;
 using TelegramBotPractice.Infrastructure.Context;
 
 namespace TelegramBotPractice.Infrastructure.Repositories

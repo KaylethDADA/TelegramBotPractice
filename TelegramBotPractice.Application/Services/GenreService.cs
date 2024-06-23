@@ -1,6 +1,6 @@
 ﻿using MapsterMapper;
 using TelegramBotPractice.Application.Dtos.Genre;
-using TelegramBotPractice.Application.Interfaces;
+using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Application.Services

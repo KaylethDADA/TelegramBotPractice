@@ -1,6 +1,6 @@
 ﻿using MapsterMapper;
 using TelegramBotPractice.Application.Dtos.User;
-using TelegramBotPractice.Application.Interfaces;
+using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using User = TelegramBotPractice.Domain.Entities.User;
 
 namespace TelegramBotPractice.Application.Services

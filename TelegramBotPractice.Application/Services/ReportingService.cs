@@ -1,7 +1,7 @@
 ﻿using MapsterMapper;
 using OfficeOpenXml;
 using TelegramBotPractice.Application.Dtos.Reporting;
-using TelegramBotPractice.Application.Interfaces;
+using TelegramBotPractice.Application.Interfaces.ReportingInterfaces;
 
 namespace TelegramBotPractice.Application.Services
 {
