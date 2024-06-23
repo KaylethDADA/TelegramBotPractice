@@ -15,6 +15,7 @@ builder.Services.AddServiceApplication();
 builder.Services.AddControllers();
 builder.Services.AddMemoryCache();
 builder.Services.AddCommands();
+builder.Services.ConfigureAuthentication();
 
 //EF
 var connectionString = builder.Configuration.GetConnectionString(ConnectionStrings.Configuration);

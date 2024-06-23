@@ -1,5 +1,6 @@
 ﻿using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using TelegramBotPractice.Domain.Entities;
+using TelegramBotPractice.Domain.Primitives.Enum;
 using TelegramBotPractice.Infrastructure.Context;
 
 namespace TelegramBotPractice.Infrastructure.Repositories
@@ -20,6 +21,8 @@ namespace TelegramBotPractice.Infrastructure.Repositories
             if(userChat != null)
                 return userChat;
 
+            user.Roles = EnumTypeRoles.User;
+            
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
 

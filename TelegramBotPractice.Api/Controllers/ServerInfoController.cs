@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TelegramBotPractice.Application.Services;
 
 namespace TelegramBotPractice.Api.Controllers
@@ -7,12 +8,14 @@ namespace TelegramBotPractice.Api.Controllers
     [Route("api/[controller]")]
     public class ServerInfoController : ControllerBase
     {
+        [Authorize]
         [HttpGet("GetInfo")]
         public IActionResult GetInfo() 
         {
             return Ok(DateTime.Now.ToString());
         }
 
+        [Authorize]
         [HttpGet("GetMostFavoritedBooksExcel")]
         public IActionResult GetMostFavoritedBooksExcel([FromServices] ReportingService service)
         {

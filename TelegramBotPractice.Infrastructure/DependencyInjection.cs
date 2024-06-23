@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using TelegramBotPractice.Application.Interfaces.Authentications;
 using TelegramBotPractice.Application.Interfaces.ReportingInterfaces;
 using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using TelegramBotPractice.Infrastructure.Repositories;
@@ -14,6 +15,7 @@ namespace TelegramBotPractice.Infrastructure
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IReportingRepository, ReportingRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             return services;
         }

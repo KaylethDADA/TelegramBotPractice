@@ -24,6 +24,7 @@ namespace TelegramBotPractice.Application
             services.AddScoped<BookService>();
             services.AddScoped<AuthorService>();
             services.AddScoped<ReportingService>();
+            services.AddScoped<AuthService>();
 
             return services;
         }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TelegramBotPractice.Infrastructure.Context;
@@ -11,9 +12,11 @@ using TelegramBotPractice.Infrastructure.Context;
 namespace TelegramBotPractice.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240623162153_AuthenticationsFix")]
+    partial class AuthenticationsFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,32 @@ namespace TelegramBotPractice.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("TelegramBotPractice.Application.Dtos.Reporting.MostFavoritedBook", b =>
+                {
+                    b.Property<string>("AuthorFullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("FavoriteCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("YearOfIssue")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.ToTable("MostFavoritedBook");
+                });
 
             modelBuilder.Entity("TelegramBotPractice.Domain.Entities.Author", b =>
                 {
