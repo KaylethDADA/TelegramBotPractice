@@ -36,10 +36,10 @@ namespace TelegramBotPractice.Application.Services
 
             return _mapper.Map<BookResponse>(book);
         }
-        public List<BookItemList> GetAll()
+        public BookListResponse GetPagedBook(BookListRequest request)
         {
-            var books = _bookRepository.GetAll();
-            return _mapper.Map<List<BookItemList>>(books);
+            var books = _bookRepository.GetPagedBook(request);
+            return books;
         }
         public BookResponse GetById(Guid id)
         {

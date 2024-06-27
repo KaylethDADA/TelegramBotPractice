@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TelegramBotPractice.Application.Dtos.Book;
 using TelegramBotPractice.Application.Services;
 
 namespace TelegramBotPractice.Api.Controllers
@@ -10,7 +11,7 @@ namespace TelegramBotPractice.Api.Controllers
     {
         [Authorize]
         [HttpGet("GetInfo")]
-        public IActionResult GetInfo() 
+        public IActionResult GetInfo()
         {
             return Ok(DateTime.Now.ToString());
         }
@@ -21,6 +22,14 @@ namespace TelegramBotPractice.Api.Controllers
         {
             var filePath = service.SaveExcelReport(service.GenerateExcelReport());
             return PhysicalFile(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", Path.GetFileName(filePath));
+        }
+
+        [Authorize]
+        [HttpGet("GetPagedBook")]
+        public IActionResult GetPagedBook([FromQuery] BookListRequest request, [FromServices] BookService service)
+        {
+            var res = service.GetPagedBook(request);
+            return Ok(res);
         }
     }
 }

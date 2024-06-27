@@ -1,10 +1,11 @@
-﻿using TelegramBotPractice.Domain.Entities;
+﻿using TelegramBotPractice.Application.Dtos.Book;
+using TelegramBotPractice.Domain.Entities;
 
 namespace TelegramBotPractice.Application.Interfaces.RepositoryInterfaces
 {
     public interface IBookRepository : IRepository<Book>
     {
-        List<Book> GetAll();
+        BookListResponse GetPagedBook (BookListRequest request);
         Book? GetNextBook(Guid? currentBookId);
     }
 }

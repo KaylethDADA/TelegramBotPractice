@@ -1,6 +1,8 @@
-﻿using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
+﻿using TelegramBotPractice.Application.Dtos.Book;
+using TelegramBotPractice.Application.Interfaces.RepositoryInterfaces;
 using TelegramBotPractice.Domain.Entities;
 using TelegramBotPractice.Infrastructure.Context;
+using TelegramBotPractice.Application.Paginations;
 
 namespace TelegramBotPractice.Infrastructure.Repositories
 {
@@ -25,9 +27,18 @@ namespace TelegramBotPractice.Infrastructure.Repositories
             db.SaveChanges();
             return x;
         }
-        public List<Book> GetAll()
+        public BookListResponse GetPagedBook(BookListRequest request)
         {
-            return db.Books.ToList();
+            var quest = db.Books.AsQueryable();
+
+            var bookList = quest.GetPaginationResponse<Book, BookListResponse, BookItemList>(request, x =>
+            new BookItemList
+            (
+                Id: x.Id,
+                Name: x.Name
+            ));
+
+            return bookList;
         }
         public Book GetById(Guid id)
         {
