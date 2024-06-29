@@ -16,9 +16,9 @@ namespace TelegramBotPractice.Application.Services
             _mapper = mapper;
         }
 
-        public string SaveExcelReport(byte[] fileContents)
+        public string SaveExcelReport(SaveReportingRequests requests)
         {
-            string pathe = _reportingBookRepository.SaveExcelReport(fileContents);
+            string pathe = _reportingBookRepository.SaveExcelReport(requests);
             return pathe;
         }
 

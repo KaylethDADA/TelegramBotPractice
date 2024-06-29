@@ -18,17 +18,17 @@ namespace TelegramBotPractice.Telegram.Commands
             if (update.Message != null)
             {
                 var command = update.Message.Text;
-                await ExecuteCommand(update, cancellationToken, command);
+                await ExecuteCommandAsync(update, cancellationToken, command);
             }
 
             if (update.Type == UpdateType.CallbackQuery && update.CallbackQuery != null)
             {
                 var command = update.CallbackQuery!.Data;
-                await ExecuteCommand(update, cancellationToken, command);
+                await ExecuteCommandAsync(update, cancellationToken, command);
             }
         }
-
-        private async Task ExecuteCommand(Update update, CancellationToken cancellationToken, string command)
+        
+        private async Task ExecuteCommandAsync(Update update, CancellationToken cancellationToken, string command)
         {
             try
             {
